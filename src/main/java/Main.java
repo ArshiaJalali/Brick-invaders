@@ -20,6 +20,7 @@ public class Main extends PApplet {
 
     public static ArrayList<Blocks> blocks = new ArrayList();
     public Blocks block;
+    public static int counter = 0;
 
 
     public static void main(String[] args) {
@@ -28,8 +29,8 @@ public class Main extends PApplet {
 
     public void setup() {
         processing = this;
-        this.spaceShipPhoto = this.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\spaceship.png");
-        this.bulletPhoto = this.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\bullet.png");
+        this.spaceShipPhoto = this.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\spaceship.png");
+        this.bulletPhoto = this.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\bullet.png");
         bullet = new Bullet(bulletPhoto, 0, 0, 0, 0, 0);
         block = new Blocks();
         block.makeBlocks();
@@ -51,10 +52,13 @@ public class Main extends PApplet {
             b.moveObj();
 
         }
+        //moving blocks
+
         for (Blocks b : blocks) {
             b.showObj();
         }
         movedBlocks();
+
     }
 
     @Override
@@ -67,10 +71,13 @@ public class Main extends PApplet {
         Random random =new Random();
         for (int i = 0; i < blocks.size(); i++) {
             Blocks b = blocks.get(i);
-            b.setY(b.getY()+5);
-            if ( b.checkfirst && b.getY()>height/2 ) {
-                Main.blocks.add(new Blocks(random.nextInt(width-100), -100, random.nextInt(3)));
-                b.checkfirst = false;
+            b.setY(b.getY() + 5);
+            if (b.checkfirst && b.getY() > height / 2) {
+                if (counter<100) {
+                    Main.blocks.add(new Blocks(random.nextInt(width - 100), -100, random.nextInt(3)));
+                    b.checkfirst = false;
+                }
+                counter += 1;
             }
         }
     }

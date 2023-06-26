@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import javax.swing.plaf.IconUIResource;
 import java.util.Random;
 
 public class Blocks implements ShowObject{
@@ -8,7 +9,6 @@ public class Blocks implements ShowObject{
     PImage photo;
     private int x;
     private int y = -10;
-    /*private int dy;*/
     private int level;
     public boolean checkfirst = true;
 
@@ -36,7 +36,6 @@ public class Blocks implements ShowObject{
 
         this.x = x;
         this.y = y;
-        /*this.dy = dy;*/
         this.level = level;
     }
 
@@ -44,13 +43,13 @@ public class Blocks implements ShowObject{
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
             Main.blocks.add(new Blocks(random.nextInt(300), y, random.nextInt(3)));
-            y-=50;
-            Main.blocks.add(new Blocks(random.nextInt(500 - 310+1)+310, y, random.nextInt(3)));
-            y-=50;
-            Main.blocks.add(new Blocks( random.nextInt(700 - 510+1)+510, y, random.nextInt(3)));
-            y-=50;
-            Main.blocks.add(new Blocks(random.nextInt(1100 - 800+1)+800, y, random.nextInt(3)));
-            y-=50;
+            y -= 50;
+            Main.blocks.add(new Blocks(random.nextInt(500 - 310 + 1) + 310, y, random.nextInt(3)));
+            y -= 50;
+            Main.blocks.add(new Blocks(random.nextInt(700 - 510 + 1) + 510, y, random.nextInt(3)));
+            y -= 50;
+            Main.blocks.add(new Blocks(random.nextInt(1100 - 800 + 1) + 800, y, random.nextInt(3)));
+            y -= 50;
         }
     }
 
@@ -76,12 +75,4 @@ public class Blocks implements ShowObject{
     public void setY(int y) {
         this.y = y;
     }
-
-    /*public int getDy() {
-        return dy;
-    }
-
-    public void setDy(int dy) {
-        this.dy = dy;
-    }*/
 }
