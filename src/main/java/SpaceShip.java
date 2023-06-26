@@ -17,7 +17,7 @@ public class SpaceShip implements ShowObject {
 
     @Override
     public void showObj() {
-        p.background(255);
+        //p.background(255);
         p.image(photo,p.mouseX-50,locationY,widthObj,heightObj);
     }
 }
