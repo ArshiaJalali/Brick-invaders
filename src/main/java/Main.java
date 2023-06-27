@@ -21,6 +21,7 @@ public class Main extends PApplet {
     public static ArrayList<Blocks> blocks = new ArrayList();
     public Blocks block;
     public static int counter = 0;
+    public boolean boss = false;
 
 
     public static void main(String[] args) {
@@ -30,10 +31,13 @@ public class Main extends PApplet {
     public void setup() {
         processing = this;
         this.spaceShipPhoto = this.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\spaceship.png");
+
         this.bulletPhoto = this.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\bullet.png");
         bullet = new Bullet(bulletPhoto, 0, 0, 0, 0, 0);
+
         block = new Blocks();
         block.makeBlocks();
+
     }
 
     public void settings() {
@@ -46,11 +50,11 @@ public class Main extends PApplet {
         SpaceShip spaceShip1 = new SpaceShip(this.spaceShipPhoto, mouseX, (float) (this.height - 150), 100, 150);
         spaceShip = spaceShip1;
         spaceShip.showObj();
+
         // show and move bullet
         for (Bullet b : bullets) {
             b.showObj();
             b.moveObj();
-
         }
         //moving blocks
 
@@ -59,6 +63,14 @@ public class Main extends PApplet {
         }
         movedBlocks();
 
+        if (blocks.get(blocks.size()-1).getY()>height) {
+            boss = true;
+        }
+        if (boss){
+            BossFight bossFight = new BossFight(540, 0);
+            bossFight.showObj();
+            bossFight.setY(bossFight.getY()+5);
+        }
     }
 
     @Override
@@ -73,9 +85,11 @@ public class Main extends PApplet {
             Blocks b = blocks.get(i);
             b.setY(b.getY() + 5);
             if (b.checkfirst && b.getY() > height / 2) {
-                if (counter<100) {
+                //limiting the number of ufo's
+                if (counter<12) {
                     Main.blocks.add(new Blocks(random.nextInt(width - 100), -100, random.nextInt(3)));
                     b.checkfirst = false;
+                    /*boss = true;*/
                 }
                 counter += 1;
             }
