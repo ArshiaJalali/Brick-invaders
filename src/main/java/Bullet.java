@@ -25,4 +25,20 @@ public class Bullet implements ShowObject {
     public void moveObj(){
         locationY -= speedY;
     }
+
+    public int getWidthObj() {
+        return widthObj;
+    }
+
+    public int getHeightObj() {
+        return heightObj;
+    }
+
+    public float getLocatonX() {
+        return locatonX;
+    }
+
+    public float getLocationY() {
+        return locationY;
+    }
 }
