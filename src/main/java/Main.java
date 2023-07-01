@@ -5,6 +5,7 @@
 
 import java.util.ArrayList;
 import java.util.Random;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -19,7 +20,8 @@ public class Main extends PApplet {
 
     public static ArrayList<Blocks> blocks = new ArrayList();
     public Blocks block;
-    public static int limit=0;
+    public static int limit = 0;
+    public boolean isOk = true;
 
     public static void main(String[] args) {
         PApplet.main("Main", args);
@@ -41,20 +43,28 @@ public class Main extends PApplet {
 
     public void draw() {
         background(0);
-        // create and show spaceShip
-        SpaceShip spaceShip1 = new SpaceShip(this.spaceShipPhoto, mouseX, (float) (this.height - 150), 100, 150);
-        spaceShip = spaceShip1;
-        spaceShip.showObj();
-        // show and move bullet
-        for (Bullet b : bullets) {
-            b.showObj();
-            b.moveObj();
+        if (isOk) {
+            // create and show spaceShip
+            SpaceShip spaceShip1 = new SpaceShip(this.spaceShipPhoto, mouseX, (float) (this.height - 150), 100, 150);
+            spaceShip = spaceShip1;
+            spaceShip.showObj();
+            // show and move bullet
+            for (Bullet b : bullets) {
+                b.showObj();
+                b.moveObj();
+            }
+            for (Blocks b : blocks) {
+                b.showObj();
+            }
+            shootingAtBlock();
+            movedBlocks();
+            crushed();
+        }else {
+            background(200);
+            fill(240, 0, 10);
+            textSize(50);
+            text("GAME OVER", 40, 300);
         }
-        for (Blocks b : blocks) {
-            b.showObj();
-        }
-        shootingAtBlock();
-        movedBlocks();
     }
 
     @Override
@@ -68,13 +78,13 @@ public class Main extends PApplet {
         for (int i = 0; i < blocks.size(); i++) {
             Blocks b = blocks.get(i);
             b.setY(b.getY() + 1);
-            if (b.getY()>height){
+            if (b.getY() > height) {
                 blocks.remove(b);
                 i--;
             }
             if (b.checkfirst && b.getY() > height / 2) {
-                if (limit<50) {
-                    Main.blocks.add(new Blocks(random.nextInt(width - 100), -100, random.nextInt(3)));
+                if (limit < 50) {
+                    Main.blocks.add(new Blocks(random.nextInt(width - 100), -100, random.nextInt(1, 3)));
                     b.checkfirst = false;
                     limit++;
                 }
@@ -91,9 +101,11 @@ public class Main extends PApplet {
                 if (bullet.getLocatonX() > block.getX() - bullet.getWidthObj() && bullet.getLocatonX() < block.getX() + block.getWidthObj() && bullet.getLocationY() > block.getY() - bullet.getHeightObj() && bullet.getLocationY() < block.getY() + block.getHeightObj()) {
                     System.out.println(block.getShield());
                     if (block.getShield() == 0) {
-                        blocks.remove(block);
+                        if (limit<50) {
+                            blocks.remove(block);
                             Main.blocks.add(new Blocks(random.nextInt(width - 100), -150, random.nextInt(1, 4)));
-                            i--;
+                        }
+                        i--;
                     } else {
                         block.setShield(block.getShield() - 1);
                     }
@@ -104,5 +116,12 @@ public class Main extends PApplet {
         }
     }
 
+    public void crushed() {
+        for (int i = 0; i < blocks.size(); i++) {
+            Blocks block = blocks.get(i);
+            if (block.getY() + block.getHeightObj() >= height - 145 && spaceShip.getLocationX() > block.getX() - bullet.getWidthObj() && spaceShip.getLocationX() < block.getX() + block.getWidthObj()) {
+                isOk=false;
+            }
+        }
     }
 }
