@@ -42,7 +42,7 @@ public class Blocks implements ShowObject {
                 p.image(photo, LocationX, LocationY, widthObj, heightObj);
                 break;
             case 4:
-                widthObj = 300;
+                widthObj = 900;
                 heightObj = 200;
                 shield = 20;
                 this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\Bossfight-ufo.png");
@@ -68,8 +68,6 @@ public class Blocks implements ShowObject {
             LocationY -= 70;
             Main.limit+=4;
         }
-            Main.blocks.add(new Blocks(p.width / 2 - 100, -400, 4));
-        Main.boss = true;
     }
 
     @Override

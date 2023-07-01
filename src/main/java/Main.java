@@ -85,12 +85,17 @@ public class Main extends PApplet {
         for (int i = 0; i < blocks.size(); i++) {
             Blocks b = blocks.get(i);
             if (boss){
-                b.setY(b.getY() + 2);
+                b.setY(b.getY() + 1);
             }else
                 b.setY(b.getY() + 2);
             if (b.getY() > height) {
                 blocks.remove(b);
                 i--;
+            }
+            // BossFight
+            if (blocks.size()==0 && !boss){
+                Main.blocks.add(new Blocks(width / 2 - 350, -400, 4));
+                Main.boss = true;
             }
             if (b.checkfirst && b.getY() > height / 2) {
                 if (limit < 10) {
