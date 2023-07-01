@@ -24,22 +24,29 @@ public class Blocks implements ShowObject {
                 widthObj = 150;
                 heightObj = 75;
                 shield = 0;
-                this.photo = p.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\ufo1.png");
+                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\ufo1.png");
                 p.image(photo, LocationX, LocationY, widthObj, heightObj);
                 break;
             case 2:
                 widthObj = 200;
                 heightObj = 60;
                 shield = 1;
-                this.photo = p.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\ufo2.png");
+                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\ufo2.png");
                 p.image(photo, LocationX, LocationY, widthObj, heightObj);
                 break;
             case 3:
                 widthObj = 250;
                 heightObj = 60;
                 shield = 2;
-                this.photo = p.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\ufo3.png");
+                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\ufo3.png");
                 p.image(photo, LocationX, LocationY, widthObj, heightObj);
+                break;
+            case 4:
+                widthObj = 300;
+                heightObj = 200;
+                shield = 20;
+                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\Bossfight-ufo.png");
+                p.image(photo, p.width/2, LocationY, widthObj, heightObj);
                 break;
         }
         this.LocationX = LocationX;
@@ -51,16 +58,18 @@ public class Blocks implements ShowObject {
     public void makeBlocks() {
         Random random = new Random();
         for (int i = 0; i < 3; i++) {
-                Main.blocks.add(new Blocks(random.nextInt(300), LocationY, random.nextInt(1, 4)));
-                LocationY -= 70;
-                Main.blocks.add(new Blocks(random.nextInt(500 - 310 + 1) + 310, LocationY, random.nextInt(1, 4)));
-                LocationY -= 70;
-                Main.blocks.add(new Blocks(random.nextInt(700 - 510 + 1) + 510, LocationY, random.nextInt(1, 4)));
-                LocationY -= 70;
-                Main.blocks.add(new Blocks(random.nextInt(1100 - 800 + 1) + 800, LocationY, random.nextInt(1, 4)));
-                LocationY -= 70;
-                Main.limit+=4;
+            Main.blocks.add(new Blocks(random.nextInt(300), LocationY, random.nextInt(1, 4)));
+            LocationY -= 70;
+            Main.blocks.add(new Blocks(random.nextInt(500 - 310 + 1) + 310, LocationY, random.nextInt(1, 4)));
+            LocationY -= 70;
+            Main.blocks.add(new Blocks(random.nextInt(700 - 510 + 1) + 510, LocationY, random.nextInt(1, 4)));
+            LocationY -= 70;
+            Main.blocks.add(new Blocks(random.nextInt(1100 - 800 + 1) + 800, LocationY, random.nextInt(1, 4)));
+            LocationY -= 70;
+            Main.limit+=4;
         }
+            Main.blocks.add(new Blocks(p.width / 2 - 100, -400, 4));
+        Main.boss = true;
     }
 
     @Override
@@ -100,6 +109,10 @@ public class Blocks implements ShowObject {
 
     public void setHeightObj(int heightObj) {
         this.heightObj = heightObj;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public int getShield() {
