@@ -24,28 +24,28 @@ public class Blocks implements ShowObject {
                 widthObj = 150;
                 heightObj = 75;
                 shield = 0;
-                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\ufo1.png");
+                this.photo = p.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\ufo1.png");
                 p.image(photo, LocationX, LocationY, widthObj, heightObj);
                 break;
             case 2:
                 widthObj = 200;
                 heightObj = 60;
                 shield = 1;
-                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\ufo2.png");
+                this.photo = p.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\ufo2.png");
                 p.image(photo, LocationX, LocationY, widthObj, heightObj);
                 break;
             case 3:
                 widthObj = 250;
                 heightObj = 60;
                 shield = 2;
-                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\ufo3.png");
+                this.photo = p.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\ufo3.png");
                 p.image(photo, LocationX, LocationY, widthObj, heightObj);
                 break;
             case 4:
                 widthObj = 900;
                 heightObj = 200;
                 shield = 20;
-                this.photo = p.loadImage("C:\\Users\\MiTi\\Desktop\\Uni\\java\\Brick-invaders\\src\\main\\java\\Bossfight-ufo.png");
+                this.photo = p.loadImage("D:\\Processing\\project\\Brick-invaders\\src\\main\\java\\Bossfight-ufo.png");
                 p.image(photo, p.width/2, LocationY, widthObj, heightObj);
                 break;
         }
@@ -74,6 +74,7 @@ public class Blocks implements ShowObject {
     public void showObj() {
         //p.background(255);
         p.image(photo, getX(), getY(), widthObj, heightObj);
+
     }
 
     //--------------------------------------------------------------------------------
