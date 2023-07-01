@@ -23,7 +23,7 @@ public class Bullet implements ShowObject {
         p.image(photo,locatonX,locationY,widthObj,heightObj);
     }
     public void moveObj(){
-        locationY -= speedY;
+        locationY -= 2*speedY;
     }
 
     public int getWidthObj() {
